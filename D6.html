@@ -38,6 +38,14 @@
       .bg-g {
         background-color: green;
       }
+
+      th {
+        padding: 50px;
+      }
+
+      td {
+        text-align: center;
+      }
     </style>
   </head>
 
@@ -210,26 +218,66 @@
          Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
         */
 
-      const revealFooterLink = function () {
-        const footerElement = document.getElementsByTagName("footer")[0];
-        console.log(footerElement);
-        footerElement.onclick = function () {
-          const link = document.querySelector("footer a");
-          const url = link.getAttribute("href");
+      // const revealFooterLink = function () {
+      //   const footerElement = document.getElementsByTagName("footer")[0];
+      //   console.log(footerElement);
+      //   footerElement.onclick = function () {
+      //     const link = document.querySelector("footer a");
+      //     const url = link.getAttribute("href");
 
-          alert(url);
-        };
-      };
+      //     alert(url);
+      //   };
+      // };
 
-      revealFooterLink();
+      // revealFooterLink();
 
       /* ESERCIZIO 11
          Crea una funzione che crei una tabella nell'elemento con id "tableArea".
          La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
       */
 
-      const generateTable = function () {};
+      const generateTable = function () {
+        const divElement = document.getElementById("tableArea");
+        console.log(divElement);
+        const createTable = document.createElement("table");
+        divElement.appendChild(createTable);
+        const firstRow = document.createElement("tr");
+        createTable.appendChild(firstRow);
+        const firstElement = document.createElement("th");
+        firstElement.innerText = "Immagine";
+        const secondElement = document.createElement("th");
+        secondElement.innerText = "Nome Prodotto";
+        const thirdElement = document.createElement("th");
+        thirdElement.innerText = "Quantità";
+        thirdElement.innerText = "Prezzo";
+        firstRow.appendChild(firstElement);
+        firstRow.appendChild(secondElement);
+        firstRow.appendChild(thirdElement);
 
+        const images = [
+          "https://m.media-amazon.com/images/I/81yJf4K+L1L._AC_SY450_.jpg",
+          "https://m.media-amazon.com/images/I/61MRTh9xotL._AC_SX679_.jpg",
+          "https://www.tradeinn.com/f/13805/138054505/samsung-smartphone-galaxy-s21-5g-8gb-128gb-6.2.jpg",
+          "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1661333885.70133010!500x500.png",
+          "https://tomatosmartphone.it/wp-content/uploads/2022/06/EU-IN_Green.png",
+        ];
+
+        for (let index = 0; index < images.length; index++) {
+          const createRow = document.createElement("tr");
+          createTable.appendChild(createRow);
+          const imageTd = document.createElement("td");
+          imageTd.innerHTML = `<img src="${images[index]}" width=200px height=200px>`;
+          createRow.append(imageTd);
+          const nomeProdottoTd = document.createElement("td");
+          nomeProdottoTd.innerText = "Smartphone";
+          createRow.appendChild(nomeProdottoTd);
+          const prezzoTd = document.createElement("td");
+          prezzoTd.innerText = `${Math.floor(Math.random() * 500)}`;
+          createRow.appendChild(prezzoTd);
+        }
+      };
+
+      generateTable();
       /* ESERCIZIO 12
          Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
       */
